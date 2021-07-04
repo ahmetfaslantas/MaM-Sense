@@ -1,58 +1,47 @@
-from Emergency import Emergency
-from BlockMessage import BlockMessage
+from Entertainment import Entertainment
+from Communication import Communication
+from BasicUI import BasicUI
 from Needs import Needs
-from FocusUtil import Direction, FocusUtil
-from Keyboard import Keyboard
 from BTDialog import BTDialog
 import sys
 from PyQt5.QtCore import pyqtSlot
-from PyQt5.QtGui import QCloseEvent
-from PyQt5 import uic
-from PyQt5.QtWidgets import QApplication, QGridLayout, QMainWindow, QPushButton
+from PyQt5.QtWidgets import QApplication, QPushButton
 
-class App(QMainWindow):
+class App(BasicUI):
+
 	def __init__(self):
-		super(App, self).__init__()
-		uic.loadUi("./ui/main.ui", self)
-		self.setStyleSheet(open("./ui/buttonFocus.css").read())
+		super(App, self).__init__("./ui/main.ui", None, None)
 
-		self.actionGroup = self.findChild(QGridLayout, "gridLayout")
-		self.focusUtil = FocusUtil(self.actionGroup)
-
-		self.keyboardButton = self.findChild(QPushButton, "keyboard")
-		self.keyboardButton.clicked.connect(self.openKeyboard)
+		self.communicationButton = self.findChild(QPushButton, "communication")
+		self.communicationButton.clicked.connect(self.openCommunication)
 
 		self.needsButton = self.findChild(QPushButton, "needs")
 		self.needsButton.clicked.connect(self.openNeeds)
-		self.a = Emergency(None)
-		self.show()
+
+		self.entertainmentButton = self.findChild(QPushButton, "entertainmentButton")
+		self.entertainmentButton.clicked.connect(self.openEntertainment)
+
 		self.initBluetooth()
 
 	def initBluetooth(self):
-		self.btWindow = BTDialog(self.connectionEstablished)
-
-	def keyPressEvent(self, event):
-		if (event.key() == 87):
-			self.focusUtil.moveFocusUpdate(Direction.UP)
-		elif (event.key() == 65):
-			self.focusUtil.moveFocusUpdate(Direction.LEFT)
-		elif (event.key() == 83):
-			self.focusUtil.moveFocusUpdate(Direction.DOWN)
-		elif (event.key() == 68):
-			self.focusUtil.moveFocusUpdate(Direction.RIGHT)
+		self.btWindow = BTDialog(self, self.connectionEstablished)
 
 	@pyqtSlot()
-	def openKeyboard(self):
-		self.keyboardUI = Keyboard(None) # TODO: We need to pass the bluetooth socket object here.
+	def openCommunication(self):
+		self.communicationUI = Communication(self, None) # TODO: We need to pass the bluetooth socket object here.
 	
 	@pyqtSlot()
 	def openNeeds(self):
-		self.needsUI = Needs(None) # TODO: We need to pass the bluetooth socket object here.
+		self.needsUI = Needs(self, None) # TODO: We need to pass the bluetooth socket object here.
+
+	@pyqtSlot()
+	def openEntertainment(self):
+		self.needsUI = Entertainment(self, None) # TODO: We need to pass the bluetooth socket object here.
 
 	@pyqtSlot()
 	def connectionEstablished(self):
 		self.socket = self.btWindow.socket
-		self.btWindow = None
+		self.btWindow.close()
 		self.socket.readyRead.connect(self.readData)
 
 	@pyqtSlot()
@@ -61,12 +50,6 @@ class App(QMainWindow):
 			data = self.socket.readLine()
 			print(str(data, "utf-8"))
 	
-	def closeEvent(self, a0: QCloseEvent) -> None:
-		self.btWindow = None
-		self.keyboardUI = None
-		self.needsUI = None
-		return super().closeEvent(a0)
-
 if __name__ == "__main__":
 	app = QApplication(sys.argv)
 	app.setStyle("Fusion")

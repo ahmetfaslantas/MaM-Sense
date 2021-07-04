@@ -1,25 +1,10 @@
-from FocusUtil import Direction, FocusUtil
-from PyQt5.QtWidgets import QGridLayout, QWidget
-from PyQt5 import uic
+from BasicUI import BasicUI
 
-class Needs(QWidget):
 
-	def __init__(self, socket):
-		super(Needs, self).__init__()
-		self.socket = socket
-		uic.loadUi("./ui/needs.ui", self)
+class Needs(BasicUI):
 
-		self.setStyleSheet(open("./ui/buttonFocus.css").read())
-		self.needsGroup = self.findChild(QGridLayout, "gridLayout")
-		self.focusUtil = FocusUtil(self.needsGroup)
-		self.show()
+	def __init__(self, parent, socket):
+		super(Needs, self).__init__("./ui/needs.ui", parent, socket)
 
-	def keyPressEvent(self, event):
-		if (event.key() == 87):
-			self.focusUtil.moveFocusUpdate(Direction.UP)
-		elif (event.key() == 65):
-			self.focusUtil.moveFocusUpdate(Direction.LEFT)
-		elif (event.key() == 83):
-			self.focusUtil.moveFocusUpdate(Direction.DOWN)
-		elif (event.key() == 68):
-			self.focusUtil.moveFocusUpdate(Direction.RIGHT)
+	def readData(self):
+		return super().readData()

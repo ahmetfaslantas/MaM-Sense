@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <widget class="QWidget" name="MainWindow">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>558</width>
+    <width>560</width>
     <height>425</height>
    </rect>
   </property>
@@ -17,13 +20,21 @@
    <iconset>
     <normaloff>icons/MAMLOGO.png</normaloff>icons/MAMLOGO.png</iconset>
   </property>
-  <widget class="QWidget" name="centralwidget">
+  <widget class="QWidget" name="centralwidget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>560</width>
+     <height>425</height>
+    </rect>
+   </property>
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>20</x>
       <y>60</y>
-      <width>531</width>
+      <width>521</width>
       <height>351</height>
      </rect>
     </property>
@@ -98,7 +109,7 @@
       </widget>
      </item>
      <item row="2" column="0">
-      <widget class="QPushButton" name="asd">
+      <widget class="QPushButton" name="entertainmentButton">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -136,7 +147,7 @@
       </widget>
      </item>
      <item row="0" column="0">
-      <widget class="QPushButton" name="keyboard">
+      <widget class="QPushButton" name="communication">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -271,9 +282,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>0</y>
-      <width>241</width>
-      <height>51</height>
+      <y>5</y>
+      <width>240</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="font">

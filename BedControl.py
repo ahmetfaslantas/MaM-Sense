@@ -1,25 +1,9 @@
-from FocusUtil import Direction, FocusUtil
-from PyQt5.QtWidgets import QGridLayout, QWidget
-from PyQt5 import uic
+from BasicUI import BasicUI
 
-class BedControl(QWidget):
+class BedControl(BasicUI):
 
 	def __init__(self, socket):
-		super(BedControl, self).__init__()
-		self.socket = socket
-		uic.loadUi("./ui/blockmessage.ui", self)
+		super(BedControl, self).__init__("./ui/bedcontrol.ui", socket)
 
-		self.setStyleSheet(open("./ui/buttonFocus.css").read())
-		self.needsGroup = self.findChild(QGridLayout, "gridLayout")
-		self.focusUtil = FocusUtil(self.needsGroup)
-		self.show()
-
-	def keyPressEvent(self, event):
-		if (event.key() == 87):
-			self.focusUtil.moveFocusUpdate(Direction.UP)
-		elif (event.key() == 65):
-			self.focusUtil.moveFocusUpdate(Direction.LEFT)
-		elif (event.key() == 83):
-			self.focusUtil.moveFocusUpdate(Direction.DOWN)
-		elif (event.key() == 68):
-			self.focusUtil.moveFocusUpdate(Direction.RIGHT)
+	def readData(self):
+		return super().readData()

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1032</width>
-    <height>456</height>
+    <width>1120</width>
+    <height>468</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,18 +20,25 @@
   <property name="styleSheet">
    <string notr="true"/>
   </property>
-
-  <widget class="QWidget" name="centralwidget">
+  <widget class="QWidget" name="centralwidget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1120</width>
+     <height>480</height>
+    </rect>
+   </property>
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>10</x>
       <y>140</y>
-      <width>991</width>
+      <width>1095</width>
       <height>318</height>
      </rect>
     </property>
-    <layout class="QGridLayout" name="keyboardLayout">
+    <layout class="QGridLayout" name="gridLayout">
      <property name="horizontalSpacing">
       <number>7</number>
      </property>
@@ -121,7 +128,7 @@
       </widget>
      </item>
      <item row="4" column="6" colspan="2">
-     <widget class="QPushButton" name="deleteAlt">
+      <widget class="QPushButton" name="deleteAlt">
        <property name="font">
         <font>
          <family>Century Gothic</family>
@@ -802,7 +809,7 @@
      <rect>
       <x>20</x>
       <y>70</y>
-      <width>991</width>
+      <width>1081</width>
       <height>61</height>
      </rect>
     </property>
@@ -811,9 +818,9 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>20</y>
-      <width>311</width>
-      <height>41</height>
+      <y>15</y>
+      <width>400</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="font">
@@ -834,7 +841,7 @@
    <widget class="QPushButton" name="pushButton_54">
     <property name="geometry">
      <rect>
-      <x>830</x>
+      <x>920</x>
       <y>20</y>
       <width>181</width>
       <height>40</height>

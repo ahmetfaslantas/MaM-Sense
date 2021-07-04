@@ -1,19 +1,17 @@
+from BasicUI import BasicUI
 from PyQt5.QtWidgets import QListWidget, QStatusBar, QWidget
 from PyQt5 import QtBluetooth, uic
 from PyQt5.QtCore import pyqtSlot
 
 
-class BTDialog(QWidget):
+class BTDialog(BasicUI):
 
-	def __init__(self, connectedFunc):
-		super().__init__()
+	def __init__(self, parent, connectedFunc):
+		super(BTDialog, self).__init__("./ui/bluetooth.ui", parent, None)
 		self.connectedFunc = connectedFunc
-		super(BTDialog, self).__init__()
-		uic.loadUi("./ui/bluetooth.ui", self)
-		self.setFixedSize(380, 300)
+
 		self.btDevices = self.findChild(QListWidget, "btList")
 		self.btDevices.clicked.connect(self.deviceSelected)
-		self.show()
 		self.scanDevices()
 
 	def scanDevices(self):

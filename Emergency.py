@@ -1,15 +1,7 @@
-from FocusUtil import Direction, FocusUtil
-from PyQt5.QtWidgets import QGridLayout, QWidget
-from PyQt5 import uic
+from BasicUI import BasicUI
 
-class Emergency(QWidget):
+class Emergency(BasicUI):
 
-	def __init__(self, socket):
-		super(Emergency, self).__init__()
-		self.socket = socket
-		uic.loadUi("./ui/emergency.ui", self)
-
-		self.setStyleSheet(open("./ui/buttonFocus.css").read())
-		self.needsGroup = self.findChild(QGridLayout, "gridLayout")
-		self.focusUtil = FocusUtil(self.needsGroup)
-		self.show()
+	def __init__(self, parent, socket):
+		super(Emergency, self).__init__("./ui/emergency.ui", parent, socket)
+		
