@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <widget class="QWidget" name="MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>762</width>
+    <width>741</width>
     <height>599</height>
    </rect>
   </property>
@@ -23,7 +23,7 @@
      <rect>
       <x>10</x>
       <y>60</y>
-      <width>711</width>
+      <width>721</width>
       <height>530</height>
      </rect>
     </property>
@@ -46,27 +46,6 @@
        </property>
        <property name="text">
         <string>Işık 4</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="label_30">
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Century Gothic</family>
-         <pointsize>14</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Işık 3</string>
        </property>
       </widget>
      </item>
@@ -526,6 +505,27 @@
        </property>
       </widget>
      </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="label_30">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Century Gothic</family>
+         <pointsize>14</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Işık 3</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
    <widget class="QPushButton" name="pushButton_56">
@@ -563,9 +563,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>10</y>
-      <width>321</width>
-      <height>41</height>
+      <y>0</y>
+      <width>401</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">
@@ -580,7 +580,7 @@
      <string notr="true"/>
     </property>
     <property name="text">
-     <string>YATAK KONTROLÜ</string>
+     <string>IŞIK KONTROLÜ</string>
     </property>
    </widget>
    <widget class="Line" name="line">

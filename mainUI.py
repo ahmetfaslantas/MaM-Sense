@@ -1,3 +1,4 @@
+from Management import Management
 from Entertainment import Entertainment
 from Communication import Communication
 from BasicUI import BasicUI
@@ -15,6 +16,7 @@ class App(BasicUI):
 		self.communicationButton.clicked.connect(self.openCommunication)
 		self.needsButton.clicked.connect(self.openNeeds)
 		self.entertainmentButton.clicked.connect(self.openEntertainment)
+		self.manageButton.clicked.connect(self.openManagement)
 
 		self.initBluetooth()
 
@@ -32,6 +34,10 @@ class App(BasicUI):
 	@pyqtSlot()
 	def openEntertainment(self):
 		self.needsUI = Entertainment(self, None) # TODO: We need to pass the bluetooth socket object here.
+	
+	@pyqtSlot()
+	def openManagement(self):
+		self.managementUI = Management(self, self.socket)
 
 	@pyqtSlot()
 	def connectionEstablished(self):

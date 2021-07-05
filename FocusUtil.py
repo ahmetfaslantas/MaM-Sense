@@ -21,8 +21,8 @@ class FocusUtil():
 
 	def setFirstButton(self):
 		self.posData = {"row": 0, "column": 0}
-		for i in range(self.cols):
-			for j in range(self.rows):
+		for j in range(self.rows):
+			for i in range(self.cols):
 				if (isinstance(self.getItem(j, i), QPushButton)):
 					self.posData["row"] = j
 					self.posData["column"] = i
@@ -37,7 +37,10 @@ class FocusUtil():
 		return self.getItem(self.posData["row"], self.posData["column"])
 
 	def getItem(self, x, y):
-		return self.gridLayout.itemAtPosition(x, y).widget()
+		try:
+			return self.gridLayout.itemAtPosition(x, y).widget()
+		except:
+			return None
 
 	def clickButton(self):
 		self.currentWidget().animateClick()
