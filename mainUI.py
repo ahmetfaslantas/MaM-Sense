@@ -1,3 +1,4 @@
+from Emergency import Emergency
 from Management import Management
 from Entertainment import Entertainment
 from Communication import Communication
@@ -6,7 +7,7 @@ from Needs import Needs
 from BTDialog import BTDialog
 import sys
 from PyQt5.QtCore import pyqtSlot
-from PyQt5.QtWidgets import QApplication, QPushButton
+from PyQt5.QtWidgets import QApplication
 
 class App(BasicUI):
 
@@ -17,6 +18,7 @@ class App(BasicUI):
 		self.needsButton.clicked.connect(self.openNeeds)
 		self.entertainmentButton.clicked.connect(self.openEntertainment)
 		self.manageButton.clicked.connect(self.openManagement)
+		self.emergencyButton.clicked.connect(self.openEmergency)
 
 		self.initBluetooth()
 
@@ -24,16 +26,20 @@ class App(BasicUI):
 		self.btWindow = BTDialog(self, self.connectionEstablished)
 
 	@pyqtSlot()
+	def openEmergency(self):
+		self.emergencyUI = Emergency(self, self.socket)
+
+	@pyqtSlot()
 	def openCommunication(self):
-		self.communicationUI = Communication(self, None) # TODO: We need to pass the bluetooth socket object here.
+		self.communicationUI = Communication(self, self.socket)
 	
 	@pyqtSlot()
 	def openNeeds(self):
-		self.needsUI = Needs(self, None) # TODO: We need to pass the bluetooth socket object here.
+		self.needsUI = Needs(self, self.socket)
 
 	@pyqtSlot()
 	def openEntertainment(self):
-		self.needsUI = Entertainment(self, None) # TODO: We need to pass the bluetooth socket object here.
+		self.entertainmentUI = Entertainment(self, self.socket)
 	
 	@pyqtSlot()
 	def openManagement(self):
