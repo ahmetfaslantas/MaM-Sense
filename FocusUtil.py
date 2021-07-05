@@ -14,10 +14,22 @@ class FocusUtil():
 		self.cols = self.gridLayout.columnCount()
 		self.applyDefaultFocus()
 
-	def applyDefaultFocus(self):
+	def getButtonLocation(self, button):
+		idx = self.gridLayout.indexOf(button)
+		location = self.gridLayout.getItemPosition(idx)
+		return location
+
+	def setFirstButton(self):
 		self.posData = {"row": 0, "column": 0}
-		while (not isinstance(self.currentWidget(), QPushButton)):
-			self.posData["column"] += 1
+		for i in range(self.cols):
+			for j in range(self.rows):
+				if (isinstance(self.getItem(j, i), QPushButton)):
+					self.posData["row"] = j
+					self.posData["column"] = i
+					return
+
+	def applyDefaultFocus(self):
+		self.setFirstButton()
 		w = self.currentWidget()
 		self.updateButton(w, True)
 

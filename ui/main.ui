@@ -40,7 +40,7 @@
     </property>
     <layout class="QGridLayout" name="gridLayout">
      <item row="2" column="3">
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="emergencyButton">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -63,7 +63,7 @@
       </widget>
      </item>
      <item row="1" column="3">
-      <widget class="QPushButton" name="pushButton_6">
+      <widget class="QPushButton" name="cleaningButton">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -86,7 +86,7 @@
       </widget>
      </item>
      <item row="0" column="3">
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="manageButton">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -147,7 +147,7 @@
       </widget>
      </item>
      <item row="0" column="0">
-      <widget class="QPushButton" name="communication">
+      <widget class="QPushButton" name="communicationButton">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -170,7 +170,7 @@
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QPushButton" name="needs">
+      <widget class="QPushButton" name="needsButton">
        <property name="minimumSize">
         <size>
          <width>0</width>

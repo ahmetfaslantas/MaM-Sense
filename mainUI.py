@@ -12,13 +12,8 @@ class App(BasicUI):
 	def __init__(self):
 		super(App, self).__init__("./ui/main.ui", None, None)
 
-		self.communicationButton = self.findChild(QPushButton, "communication")
 		self.communicationButton.clicked.connect(self.openCommunication)
-
-		self.needsButton = self.findChild(QPushButton, "needs")
 		self.needsButton.clicked.connect(self.openNeeds)
-
-		self.entertainmentButton = self.findChild(QPushButton, "entertainmentButton")
 		self.entertainmentButton.clicked.connect(self.openEntertainment)
 
 		self.initBluetooth()

@@ -45,4 +45,10 @@ class BasicUI(QWidget):
 			self.focusUtil.moveFocusUpdate(Direction.RIGHT)
 
 	def readData(self):
-		pass
+		raise NotImplementedError("This function is not yet implemented.")
+
+	def writeData(self, data):
+		if (self.socket != None):
+			self.socket.write(data.encode())
+		else:
+			raise Exception("Bluetooth socket not initialized yet!")

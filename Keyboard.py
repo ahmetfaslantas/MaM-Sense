@@ -24,3 +24,6 @@ class Keyboard(BasicUI):
                 self.textOutput.setText(self.textOutput.text()[:-1])
             elif (button.objectName() == "deleteAll"):
                 self.textOutput.setText("")
+            elif (button.objectName() == "sendMessage"):
+                self.writeData(self.textOutput.text())
+                self.textOutput.clear()
