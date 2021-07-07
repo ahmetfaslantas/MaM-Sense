@@ -20,7 +20,7 @@ class Keyboard(BasicUI):
         else:
             if (button.objectName() == "space"):
                 self.textOutput.setText(self.textOutput.text() + " ")
-            elif (button.objectName() == "delete" or button.objectName() == "deleteAlt"):
+            elif (button.objectName() == "delete"):
                 self.textOutput.setText(self.textOutput.text()[:-1])
             elif (button.objectName() == "deleteAll"):
                 self.textOutput.setText("")

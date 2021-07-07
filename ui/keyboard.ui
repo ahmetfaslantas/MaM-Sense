@@ -128,7 +128,7 @@
       </widget>
      </item>
      <item row="4" column="6" colspan="2">
-      <widget class="QPushButton" name="deleteAlt">
+      <widget class="QPushButton" name="emoji">
        <property name="font">
         <font>
          <family>Century Gothic</family>
@@ -142,7 +142,7 @@
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>icons/backspace.png</normaloff>icons/backspace.png</iconset>
+         <normaloff>icons/emoji/8.png</normaloff>icons/emoji/8.png</iconset>
        </property>
        <property name="iconSize">
         <size>
