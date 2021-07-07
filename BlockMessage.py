@@ -18,3 +18,4 @@ class BlockMessage(BasicUI):
 		location = self.focusUtil.getButtonLocation(button)
 		text = self.focusUtil.getItem(location[0], location[1] - 1).text()
 		self.writeData(text)
+#denemegitpush
