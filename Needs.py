@@ -6,8 +6,8 @@ from BasicUI import BasicUI
 
 class Needs(BasicUI):
 
-	def __init__(self, parent, socket):
-		super(Needs, self).__init__("./ui/needs.ui", parent, socket)
+	def __init__(self, parent, socket, auth):
+		super(Needs, self).__init__("./ui/needs.ui", parent, socket, auth)
 
 		self.needWater.clicked.connect(self.transmitWaterNeed)
 		self.needFood.clicked.connect(self.transmitFoodNeed)
@@ -29,7 +29,7 @@ class Needs(BasicUI):
 
 	@pyqtSlot()
 	def transmitCleaningNeed(self):
-		self.cleaningUI = Cleaning(self, self.socket)
+		self.cleaningUI = Cleaning(self, self.socket, self.auth)
 
 	def readData(self):
 		return super().readData()

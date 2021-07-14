@@ -5,8 +5,8 @@ from BasicUI import BasicUI
 
 class Entertainment(BasicUI):
 	
-	def __init__(self, parent, socket):
-		super().__init__("./ui/entertainment.ui", parent, socket)
+	def __init__(self, parent, socket, auth):
+		super().__init__("./ui/entertainment.ui", parent, socket, auth)
 
 		self.radioButton = self.findChild(QPushButton, "radioButton")
 		self.radioButton.clicked.connect(self.openRadio)

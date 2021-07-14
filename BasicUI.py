@@ -5,11 +5,12 @@ from PyQt5 import uic
 
 class BasicUI(QWidget):
 
-	def __init__(self, uipath, parent, socket):
+	def __init__(self, uipath, parent, socket, auth):
 		super(BasicUI, self).__init__()
 		
 		self.socket = socket
 		self.parent = parent
+		self.auth = auth
 
 		uic.loadUi(uipath, self)
 		self.setFixedSize(self.geometry().width(), self.geometry().height())
@@ -22,6 +23,8 @@ class BasicUI(QWidget):
 
 		if (self.gridLayout != None):
 			self.focusUtil = FocusUtil(self.gridLayout)
+		else:
+			self.focusUtil = None
 		self.show()
 
 	def closeEvent(self, a0: QCloseEvent) -> None:

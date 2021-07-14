@@ -5,8 +5,8 @@ from BedControl import BedControl
 
 class Management(BasicUI):
 
-    def __init__(self, parent, socket):
-        super(Management, self).__init__("./ui/management.ui", parent, socket)
+    def __init__(self, parent, socket, auth):
+        super(Management, self).__init__("./ui/management.ui", parent, socket, auth)
 
         self.lightsButton.clicked.connect(self.openLightControl)
         self.bedButton.clicked.connect(self.openBedControl)

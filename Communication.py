@@ -5,8 +5,8 @@ from PyQt5.QtWidgets import QPushButton
 from BasicUI import BasicUI
 
 class Communication(BasicUI):
-	def __init__(self, parent, socket):
-		super().__init__("./ui/communication.ui", parent, socket)
+	def __init__(self, parent, socket, auth):
+		super().__init__("./ui/communication.ui", parent, socket, auth)
 
 
 		self.keyboardButton = self.findChild(QPushButton, "keyboardButton")
@@ -20,8 +20,8 @@ class Communication(BasicUI):
 
 	@pyqtSlot()
 	def openKeyboard(self):
-		self.keyboardUI = Keyboard(self, self.socket)
+		self.keyboardUI = Keyboard(self, self.socket, self.auth)
 
 	@pyqtSlot()
 	def openBlockMessage(self):
-		self.blockMessageUI = BlockMessage(self, self.socket)
+		self.blockMessageUI = BlockMessage(self, self.socket, self.auth)

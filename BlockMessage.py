@@ -4,8 +4,8 @@ from BasicUI import BasicUI
 
 class BlockMessage(BasicUI):
 
-	def __init__(self, parent, socket):
-		super(BlockMessage, self).__init__("./ui/blockmessage.ui", parent, socket)
+	def __init__(self, parent, socket, auth):
+		super(BlockMessage, self).__init__("./ui/blockmessage.ui", parent, socket, auth)
 
 		for i in range(self.gridLayout.count()):
 			widget = self.gridLayout.itemAt(i).widget()
@@ -18,4 +18,3 @@ class BlockMessage(BasicUI):
 		location = self.focusUtil.getButtonLocation(button)
 		text = self.focusUtil.getItem(location[0], location[1] - 1).text()
 		self.writeData(text)
-#denemegitpush

@@ -7,7 +7,7 @@ from PyQt5.QtCore import pyqtSlot
 class BTDialog(BasicUI):
 
 	def __init__(self, parent, connectedFunc):
-		super(BTDialog, self).__init__("./ui/bluetooth.ui", parent, None)
+		super(BTDialog, self).__init__("./ui/bluetooth.ui", parent, None, None)
 		self.connectedFunc = connectedFunc
 
 		self.btDevices = self.findChild(QListWidget, "btList")
