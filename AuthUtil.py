@@ -1,12 +1,15 @@
 import os
 import requests
 
+LOGINURL = "http://192.168.1.60:9199/identitytoolkit.googleapis.com/v1"
+REFRESHURL = "http://192.168.1.60:9199/securetoken.googleapis.com/v1"
+
 class AuthUtil(object):
 
 
 	def loginWithEmailPassword(self, email, password):
 		query = {"email": email, "password": password, "returnSecureToken": True}
-		reqRes = requests.post(url = "http://192.168.1.60:9199/identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + os.getenv("APIKEY"),
+		reqRes = requests.post(url = LOGINURL + "/accounts:signInWithPassword?key=" + os.getenv("APIKEY"),
 					json = query,
 					headers = {"Content-Type": "application/json"})
 		res = reqRes.json()
@@ -19,7 +22,7 @@ class AuthUtil(object):
 
 	def refreshToken(self, refreshToken):
 		query = {"grant_type": "refresh_token", "refresh_token": refreshToken}
-		reqRes = requests.post(url = "http://192.168.1.60:9199/securetoken.googleapis.com/v1/token?key=" + os.getenv("APIKEY"), 
+		reqRes = requests.post(url = REFRESHURL + "/token?key=" + os.getenv("APIKEY"), 
 					json = query,
 					headers = {"Content-Type": "application/json"})
 		res = reqRes.json()

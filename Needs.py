@@ -1,6 +1,5 @@
 from Cleaning import Cleaning
 from PyQt5.QtCore import pyqtSlot
-from PyQt5.QtWidgets import QPushButton
 from BasicUI import BasicUI
 
 

@@ -1,12 +1,13 @@
+import os
 import requests
 
-BASEURL = "http://192.168.1.60:8081/v1/projects/emulator-222e3/databases/(default)/documents"
+BASEURL = "http://192.168.1.60:8081/v1/projects/{}/databases/(default)/documents"
 
 class FirestoreUtil(object):
 
 	@staticmethod
 	def getDocument(path, id):
-		reqRes = requests.get(url = BASEURL + path, headers = {"Authorization": f"Bearer {id}"})
+		reqRes = requests.get(url = BASEURL.format(os.getenv("PROJECTID")) + path, headers = {"Authorization": f"Bearer {id}"})
 		res = reqRes.json()
 		if ("error" in res):
 			# TODO: Give some indication to user.
@@ -16,8 +17,9 @@ class FirestoreUtil(object):
 
 	@staticmethod
 	def writeDocument(path, data, id, docId = None):
-		reqRes = requests.post(url = BASEURL + path, json = data, params = {"documentId": docId}, headers = {"Authorization": f"Bearer {id}"})
+		reqRes = requests.post(url = BASEURL.format(os.getenv("PROJECTID")) + path, json = data, params = {"documentId": docId}, headers = {"Authorization": f"Bearer {id}"})
 		res = reqRes.json()
+		print(res)
 		if ("error" in res):
 			# TODO: Give some indication to user.
 			return
