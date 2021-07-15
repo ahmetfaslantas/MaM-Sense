@@ -1,7 +1,6 @@
 from AuthUtil import AuthUtil
 from PyQt5.QtCore import pyqtSlot
 from BasicUI import BasicUI
-import requests
 
 class Login(BasicUI):
 

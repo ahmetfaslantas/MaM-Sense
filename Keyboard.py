@@ -28,5 +28,5 @@ class Keyboard(BasicUI):
 				if (self.textOutput.text() == ""):
 					return
 				data = FirestoreUtil.formatData({"message": self.textOutput.text()})
-				FirestoreUtil.writeDocument("/users/" + self.auth.localId + "/messages", data, self.auth.idToken)
+				FirestoreUtil.writeDocument("/users/{}/messages".format(self.auth.localId), data, self.auth.idToken)
 				self.textOutput.clear()

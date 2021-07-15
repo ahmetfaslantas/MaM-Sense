@@ -1,6 +1,7 @@
 from Cleaning import Cleaning
 from PyQt5.QtCore import pyqtSlot
 from BasicUI import BasicUI
+from FirestoreUtil import FirestoreUtil
 
 
 class Needs(BasicUI):
@@ -16,15 +17,18 @@ class Needs(BasicUI):
 
 	@pyqtSlot()
 	def transmitWaterNeed(self):
-		self.writeData("Need Water")
+		data = FirestoreUtil.formatData({"needType": "water"})
+		FirestoreUtil.writeDocument("/users/{}/needs".format(self.auth.localId), data, self.auth.idToken)
 
 	@pyqtSlot()
 	def transmitFoodNeed(self):
-		self.writeData("Need Food")
+		data = FirestoreUtil.formatData({"needType": "food"})
+		FirestoreUtil.writeDocument("/users/{}/needs".format(self.auth.localId), data, self.auth.idToken)
 
 	@pyqtSlot()
 	def transmitExerciseNeed(self):
-		self.writeData("Need Exercise")
+		data = FirestoreUtil.formatData({"needType": "exercise"})
+		FirestoreUtil.writeDocument("/users/{}/needs".format(self.auth.localId), data, self.auth.idToken)
 
 	@pyqtSlot()
 	def transmitCleaningNeed(self):

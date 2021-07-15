@@ -19,7 +19,6 @@ class FirestoreUtil(object):
 	def writeDocument(path, data, id, docId = None):
 		reqRes = requests.post(url = BASEURL.format(os.getenv("PROJECTID")) + path, json = data, params = {"documentId": docId}, headers = {"Authorization": f"Bearer {id}"})
 		res = reqRes.json()
-		print(res)
 		if ("error" in res):
 			# TODO: Give some indication to user.
 			return
@@ -29,7 +28,11 @@ class FirestoreUtil(object):
 	@staticmethod
 	def formatData(data):
 		formattedData = {"fields": {}}
+		dataTypes = {
+			"int": "integerValue",
+			"str": "stringValue"
+		}
 		for key in data.keys():
 			formattedData["fields"][key] = {}
-			formattedData["fields"][key]["stringValue"] = data[key]
+			formattedData["fields"][key][dataTypes[type(data[key]).__name__]] = data[key]
 		return formattedData
