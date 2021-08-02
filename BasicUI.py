@@ -5,10 +5,10 @@ from PyQt5 import uic
 
 class BasicUI(QWidget):
 
-	def __init__(self, uipath, parent, socket, auth):
+	def __init__(self, uipath, parent, bluetoothThread, auth):
 		super(BasicUI, self).__init__()
 		
-		self.socket = socket
+		self.bluetoothThread = bluetoothThread
 		self.parent = parent
 		self.auth = auth
 
@@ -18,8 +18,8 @@ class BasicUI(QWidget):
 
 		self.gridLayout = self.findChild(QGridLayout, "gridLayout")
 
-		if (self.socket != None):
-			self.socket.readyRead.connect(self.readData)
+		if (self.bluetoothThread != None):
+			self.bluetoothThread.changeDataCallback(self.bluetoothDataCallback)
 
 		if (self.gridLayout != None):
 			self.focusUtil = FocusUtil(self.gridLayout)
@@ -47,11 +47,11 @@ class BasicUI(QWidget):
 		elif (event.key() == 68):
 			self.focusUtil.moveFocusUpdate(Direction.RIGHT)
 
-	def readData(self):
+	def readData(self, data):
 		raise NotImplementedError("This function is not yet implemented.")
 
 	def writeData(self, data):
-		if (self.socket != None):
-			self.socket.write(data.encode())
+		if (self.bluetoothThread != None):
+			self.bluetoothThread.write(data.encode())
 		else:
-			raise Exception("Bluetooth socket not initialized yet!")
+			raise Exception("Bluetooth bluetoothThread not initialized yet!")

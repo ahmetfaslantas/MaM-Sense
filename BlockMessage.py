@@ -4,8 +4,8 @@ from BasicUI import BasicUI
 
 class BlockMessage(BasicUI):
 
-	def __init__(self, parent, socket, auth):
-		super(BlockMessage, self).__init__("./ui/blockmessage.ui", parent, socket, auth)
+	def __init__(self, parent, bluetoothThread, auth):
+		super(BlockMessage, self).__init__("./ui/blockmessage.ui", parent, bluetoothThread, auth)
 
 		for i in range(self.gridLayout.count()):
 			widget = self.gridLayout.itemAt(i).widget()

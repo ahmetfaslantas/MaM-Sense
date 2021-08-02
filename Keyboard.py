@@ -5,8 +5,8 @@ from PyQt5.QtWidgets import QLineEdit
 
 
 class Keyboard(BasicUI):
-	def __init__(self, parent, socket, auth):
-		super(Keyboard, self).__init__("./ui/keyboard.ui", parent, socket, auth)
+	def __init__(self, parent, bluetoothThread, auth):
+		super(Keyboard, self).__init__("./ui/keyboard.ui", parent, bluetoothThread, auth)
 
 		self.textOutput = self.findChild(QLineEdit, "textOutput")
 		for i in range(self.gridLayout.count()):

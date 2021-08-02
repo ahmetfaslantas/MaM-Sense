@@ -25,38 +25,43 @@ class App(BasicUI):
 		self.openLogin()
 
 	def openBluetooth(self):
-		self.btWindow = BTDialog(self, self.connectionEstablished)
+		self.btWindow = BTDialog(self, self.bluetoothDataCallback, self.bluetoothConnectionEstablished, self.bluetoothError)
 
 	@pyqtSlot()
 	def openEmergency(self):
-		self.emergencyUI = Emergency(self, self.socket, self.auth)
+		self.emergencyUI = Emergency(self, self.bluetoothThread, self.auth)
 
 	@pyqtSlot()
 	def openCommunication(self):
-		self.communicationUI = Communication(self, self.socket, self.auth)
+		self.communicationUI = Communication(self, self.bluetoothThread, self.auth)
 	
 	@pyqtSlot()
 	def openNeeds(self):
-		self.needsUI = Needs(self, self.socket, self.auth)
+		self.needsUI = Needs(self, self.bluetoothThread, self.auth)
 
 	@pyqtSlot()
 	def openEntertainment(self):
-		self.entertainmentUI = Entertainment(self, self.socket, self.auth)
+		self.entertainmentUI = Entertainment(self, self.bluetoothThread, self.auth)
 	
 	@pyqtSlot()
 	def openManagement(self):
-		self.managementUI = Management(self, self.socket, self.auth)
+		self.managementUI = Management(self, self.bluetoothThread, self.auth)
 
 	@pyqtSlot()
 	def openLogin(self):
 		self.loginUI = Login(self, self.loginSuccessful)
 
-	@pyqtSlot()
-	def connectionEstablished(self):
-		self.socket = self.btWindow.socket
+	def bluetoothConnectionEstablished(self):
+		self.bluetoothThread = self.btWindow.bluetoothThread
 		self.btWindow.close()
-		self.socket.readyRead.connect(self.readData)
-
+		self.bluetoothThread.changeDataCallback(self.bluetoothDataCallback)
+	
+	def bluetoothError(self, e):
+		print("Error: {}".format(e))
+	
+	def bluetoothDataCallback(self, data):
+		print(data)
+	
 	@pyqtSlot()
 	def loginSuccessful(self):
 		self.auth = self.loginUI.auth
@@ -64,11 +69,7 @@ class App(BasicUI):
 		self.show()
 		self.openBluetooth()
 
-	@pyqtSlot()
-	def readData(self):
-		while self.socket.canReadLine():
-			data = self.socket.readLine()
-			print(str(data, "utf-8"))
+	
 	
 if __name__ == "__main__":
 	load_dotenv()

@@ -1,48 +1,42 @@
 from BasicUI import BasicUI
+from BTThread import BTThread
 from PyQt5.QtWidgets import QListWidget, QStatusBar, QWidget
-from PyQt5 import QtBluetooth, uic
+from PyQt5 import uic
 from PyQt5.QtCore import pyqtSlot
+import bluetooth
 
 
 class BTDialog(BasicUI):
 
-	def __init__(self, parent, connectedFunc):
+	def __init__(self, parent, dataCallback, connectedCallback, errorCallback):
 		super(BTDialog, self).__init__("./ui/bluetooth.ui", parent, None, None)
-		self.connectedFunc = connectedFunc
+		
+		self.connectedCallback = connectedCallback
+		self.dataCallback = dataCallback
+		self.errorCallback = errorCallback
 
 		self.btDevices = self.findChild(QListWidget, "btList")
 		self.btDevices.clicked.connect(self.deviceSelected)
 		self.scanDevices()
 
 	def scanDevices(self):
-		self.agent = QtBluetooth.QBluetoothDeviceDiscoveryAgent(self)
-		self.agent.finished.connect(self.devicesFound)
-		self.agent.setLowEnergyDiscoveryTimeout(1000)
-		self.agent.start()
+		devices = bluetooth.discover_devices(lookup_names = True)
+		self.devicesFound(devices)
 
-	def devicesFound(self):
-		for device in self.agent.discoveredDevices():
-			self.btDevices.insertItem(0, device.address().toString())
+	def devicesFound(self, devices):
+		for device in devices:
+			self.btDevices.insertItem(0, device[0])
 
 	def initBluetooth(self):
-		self.socket = QtBluetooth.QBluetoothSocket(QtBluetooth.QBluetoothServiceInfo.RfcommProtocol)
-		self.socket.connected.connect(self.connectedFunc)
-		self.socket.disconnected.connect(self.deviceDisconnected)
-		self.socket.error.connect(self.bluetoothError)
-
-		self.socket.connectToService(QtBluetooth.QBluetoothAddress(self.address), 1)
+		self.bluetoothThread = BTThread(self.address, self.dataCallback, self.connectedCallback, self.errorCallback)
+		self.bluetoothThread.init()
+		
 
 	@pyqtSlot()
 	def deviceSelected(self):
 		self.address = self.btDevices.currentItem().text()
 		self.initBluetooth()
 
-	@pyqtSlot()
-	def deviceDisconnected(self):
-		print("Device disconnected!")
 
-	@pyqtSlot()
-	def bluetoothError(self):
-		print("Error while connecting: " + self.socket.errorString())
 
 

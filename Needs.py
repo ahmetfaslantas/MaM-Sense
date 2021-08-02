@@ -6,8 +6,8 @@ from FirestoreUtil import FirestoreUtil
 
 class Needs(BasicUI):
 
-	def __init__(self, parent, socket, auth):
-		super(Needs, self).__init__("./ui/needs.ui", parent, socket, auth)
+	def __init__(self, parent, bluetoothThread, auth):
+		super(Needs, self).__init__("./ui/needs.ui", parent, bluetoothThread, auth)
 
 		self.needWater.clicked.connect(self.transmitWaterNeed)
 		self.needFood.clicked.connect(self.transmitFoodNeed)
@@ -32,7 +32,7 @@ class Needs(BasicUI):
 
 	@pyqtSlot()
 	def transmitCleaningNeed(self):
-		self.cleaningUI = Cleaning(self, self.socket, self.auth)
+		self.cleaningUI = Cleaning(self, self.bluetoothThread, self.auth)
 
-	def readData(self):
+	def bluetoothDataCallback(self, data):
 		return super().readData()

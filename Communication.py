@@ -5,8 +5,8 @@ from PyQt5.QtWidgets import QPushButton
 from BasicUI import BasicUI
 
 class Communication(BasicUI):
-	def __init__(self, parent, socket, auth):
-		super().__init__("./ui/communication.ui", parent, socket, auth)
+	def __init__(self, parent, bluetoothThread, auth):
+		super().__init__("./ui/communication.ui", parent, bluetoothThread, auth)
 
 
 		self.keyboardButton = self.findChild(QPushButton, "keyboardButton")
@@ -15,13 +15,13 @@ class Communication(BasicUI):
 		self.blockButton = self.findChild(QPushButton, "blockButton")
 		self.blockButton.clicked.connect(self.openBlockMessage)
 
-	def readData(self):
+	def bluetoothDataCallback(self, data):
 		return super().readData()
 
 	@pyqtSlot()
 	def openKeyboard(self):
-		self.keyboardUI = Keyboard(self, self.socket, self.auth)
+		self.keyboardUI = Keyboard(self, self.bluetoothThread, self.auth)
 
 	@pyqtSlot()
 	def openBlockMessage(self):
-		self.blockMessageUI = BlockMessage(self, self.socket, self.auth)
+		self.blockMessageUI = BlockMessage(self, self.bluetoothThread, self.auth)
