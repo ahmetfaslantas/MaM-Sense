@@ -17,4 +17,4 @@ class BlockMessage(BasicUI):
 		button = self.sender()
 		location = self.focusUtil.getButtonLocation(button)
 		text = self.focusUtil.getItem(location[0], location[1] - 1).text()
-		self.writeData(text)
+		self.bluetoothWriteData(text)

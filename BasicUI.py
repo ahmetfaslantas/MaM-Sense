@@ -47,10 +47,10 @@ class BasicUI(QWidget):
 		elif (event.key() == 68):
 			self.focusUtil.moveFocusUpdate(Direction.RIGHT)
 
-	def readData(self, data):
+	def bluetoothDataCallback(self, data):
 		raise NotImplementedError("This function is not yet implemented.")
 
-	def writeData(self, data):
+	def bluetoothWriteData(self, data):
 		if (self.bluetoothThread != None):
 			self.bluetoothThread.write(data.encode())
 		else:

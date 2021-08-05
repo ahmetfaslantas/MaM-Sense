@@ -10,6 +10,7 @@ import sys
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QApplication
 from dotenv import load_dotenv
+from PyQt5.QtGui import QCloseEvent
 
 class App(BasicUI):
 

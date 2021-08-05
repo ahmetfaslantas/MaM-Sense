@@ -35,4 +35,4 @@ class Needs(BasicUI):
 		self.cleaningUI = Cleaning(self, self.bluetoothThread, self.auth)
 
 	def bluetoothDataCallback(self, data):
-		return super().readData()
+		return super().bluetoothDataCallback(data)

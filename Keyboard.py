@@ -30,3 +30,6 @@ class Keyboard(BasicUI):
 				data = FirestoreUtil.formatData({"message": self.textOutput.text()})
 				FirestoreUtil.writeDocument("/users/{}/messages".format(self.auth.localId), data, self.auth.idToken)
 				self.textOutput.clear()
+	
+	def bluetoothDataCallback(self, data):
+		return super().bluetoothDataCallback(data)

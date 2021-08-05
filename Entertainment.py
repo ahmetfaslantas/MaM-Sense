@@ -16,4 +16,4 @@ class Entertainment(BasicUI):
 		self.radioUI = Radio(self, self.bluetoothThread)
 
 	def bluetoothDataCallback(self, data):
-		return super().readData()
+		return super().bluetoothDataCallback(data)

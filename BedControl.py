@@ -6,4 +6,4 @@ class BedControl(BasicUI):
 		super(BedControl, self).__init__("./ui/bedcontrol.ui", parent, bluetoothThread, None)
 
 	def bluetoothDataCallback(self, data):
-		return super().readData()
+		return super().bluetoothDataCallback(data)

@@ -16,7 +16,7 @@ class Communication(BasicUI):
 		self.blockButton.clicked.connect(self.openBlockMessage)
 
 	def bluetoothDataCallback(self, data):
-		return super().readData()
+		return super().bluetoothDataCallback(data)
 
 	@pyqtSlot()
 	def openKeyboard(self):

@@ -20,6 +20,8 @@ class BTThread(Thread):
 			self.connectedCallback()
 		except Exception as e:
 			self.errorCallback(e)
+		
+		self.setDaemon(True)
 		self.start()
 		
 		
