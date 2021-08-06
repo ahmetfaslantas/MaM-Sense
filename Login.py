@@ -1,4 +1,4 @@
-from AuthUtil import AuthUtil
+from AuthUtil import AuthUtil, ErrorCodes
 from PyQt5.QtCore import pyqtSlot
 from BasicUI import BasicUI
 
@@ -14,7 +14,13 @@ class Login(BasicUI):
 		email = self.email.text()
 		password = self.password.text()
 		auth = AuthUtil()
-		auth.loginWithEmailPassword(email, password)
+		success, code = auth.loginWithEmailPassword(email, password)
 		
-		self.auth = auth
-		self.loginFunc()
+		if (success):
+			self.auth = auth
+			self.loginFunc()
+		elif (code == ErrorCodes.WRONGCREDENTIALS):
+			print("Wrong username/password") # TODO: Replace with UI changes.
+		elif (code == ErrorCodes.CONNECTIONERROR):
+			print("Cannot connect to the server") # TODO: Replace with UI changes.
+			
