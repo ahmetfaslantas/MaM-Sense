@@ -1,18 +1,20 @@
 from PyQt5.QtGui import QCloseEvent
 from FocusUtil import Direction, FocusUtil
 from PyQt5.QtWidgets import QApplication, QGridLayout, QWidget
-from PyQt5 import uic
+from PyQt5 import uic, QtCore
 
 class BasicUI(QWidget):
 
 	def __init__(self, uipath, parent, bluetoothThread, auth):
 		super(BasicUI, self).__init__()
-		
+
 		self.bluetoothThread = bluetoothThread
 		self.parent = parent
 		self.auth = auth
 
 		uic.loadUi(uipath, self)
+		self.installEventFilter(self)
+
 		self.setFixedSize(self.geometry().width(), self.geometry().height())
 		self.setStyleSheet(open("./ui/buttonFocus.css").read())
 
@@ -33,6 +35,12 @@ class BasicUI(QWidget):
 			if (widget.parent == self):
 				widget.close()
 		return super().closeEvent(a0)
+
+	def eventFilter(self, object, event):
+		if (event.type() == QtCore.QEvent.WindowActivate):
+			if (self.bluetoothThread != None):
+				self.bluetoothThread.changeDataCallback(self.bluetoothDataCallback)
+		return False
 
 	def keyPressEvent(self, event):
 		if (self.focusUtil == None):
